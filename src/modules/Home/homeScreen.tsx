@@ -19,7 +19,7 @@ export const HomeScreen = () => {
   }, [isLoading]);
 
   return (
-    <BottomTabPageLayout headerText="HOME">
+    <BottomTabPageLayout headerText="HOME Screen">
       {isLoading && <ActivityIndicator />}
       <View style={styles.Container}>
         <Button

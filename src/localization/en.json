@@ -1,0 +1,15 @@
+{
+  "translation": {
+    "tutorial": {
+      "start": "Start!",
+      "skip": "Skip",
+      "welcome_Optus_title": "Welcome to Optus, your personal ID",
+      "welcome_Optus_description": "Safely store and manage your digital credentials. Prove who you are anytime, anywhere, right from your mobile phone. \n",
+      "what_is_Optus_title": "What you can do with Optus",
+      "what_is_Optus_description": " \u2022 Fast and Convenient: Organize and manage your information in one place.\n \u2022 Safe and Secure: Only you can access and control your digital data.\n \u2022 Access Anywhere: Connect with services provided by both public and private sector providers.",
+      "Optus_digital_title": "Digital ID in Your Control",
+      "Optus_digital_description": " \u2022 Enter your data and effortlessly aunthenticate yourself, digitally. \n \u2022 Utilize your verified information to connect seamlessly with a variety of services. \n \u2022 Take charge of how you share your data and safeguard your privacy.",
+      "start_Optus_title": "Let's start using Optus!"
+    }
+  }
+}

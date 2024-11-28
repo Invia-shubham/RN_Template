@@ -1,0 +1,41 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Mark-Pro-Bold.ttf",
+      "sha1": "2c7f0ac979dd9093a5bd23908ba3e38c82b1d0dd"
+    },
+    {
+      "path": "src/assets/fonts/MarkOT-Heavy.ttf",
+      "sha1": "2e56df288f0ad2442221b96399b5a1e73641bbee"
+    },
+    {
+      "path": "src/assets/fonts/MarkOT-Medium.ttf",
+      "sha1": "e8ab680e87d8c3cdd9ce39c67c097f182f6c5e86"
+    },
+    {
+      "path": "src/assets/fonts/MarkOT.ttf",
+      "sha1": "7d46bbd6360b4c0c700acdd2574b1771b5d2e978"
+    },
+    {
+      "path": "src/assets/fonts/Quicksand-Bold.ttf",
+      "sha1": "07ca4486c80653a7f3abc18145c2f251d5c9989b"
+    },
+    {
+      "path": "src/assets/fonts/Quicksand-Light.ttf",
+      "sha1": "0d6fe8746125375ffd3ea4de6ecf062643a65c52"
+    },
+    {
+      "path": "src/assets/fonts/Quicksand-Medium.ttf",
+      "sha1": "9cbdd6785519aa2d85ee58cb5101ea9dbff8652f"
+    },
+    {
+      "path": "src/assets/fonts/Quicksand-Regular.ttf",
+      "sha1": "ba6e4d47926d643a8a4b509b193b3a87c3ea385d"
+    },
+    {
+      "path": "src/assets/fonts/Quicksand-SemiBold.ttf",
+      "sha1": "1f5c9cf95379bef6cee5f2a7deb393b157c91f4e"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  // "compilerOptions": {
+  //   "baseUrl": "./",  // Sets the base directory for relative paths
+  //   "paths": {
+  //     "@context/*": ["src/appcontext/*"],  // Custom alias for your context folder
+  //     "@assets/*": ["src/assets/*"]  // Example: Custom alias for assets
+  //   }
+  // }
+}
+

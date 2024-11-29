@@ -16,7 +16,7 @@ module.exports = mergeConfig(getDefaultConfig(__dirname), config);
 
 // // Custom aliases from tsconfig
 // const alias = {
-// //   '@context': path.resolve(__dirname, 'src/appcontext'),
+//   '@context': path.resolve(__dirname, 'src/appcontext'),
 //   '@assets': path.resolve(__dirname, 'src/assets'),
 // };
 

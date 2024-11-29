@@ -11,6 +11,7 @@ import {store, persistor} from './src/redux/store';
 import {ErrorContextProvider} from './src/hooks/errorHandlerContext';
 import { AppLangContextProvider, AppThemeContextProvider } from './src/appcontext';
 
+
 export function application() {
   console.log('store', store);
   console.log('persistor', persistor);

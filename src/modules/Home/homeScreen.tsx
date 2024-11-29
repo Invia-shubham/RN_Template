@@ -5,8 +5,6 @@ import {typography} from '../../components/atoms/typography';
 import BottomTabPageLayout from '../../components/organisms/bottomTabPageLayout/bottomTabPageLayout';
 import Button, { ButtonType } from '../../components/molecules/button';
 import ActivityIndicator from '../../components/molecules/activityIndicator';
-import { image } from '../../utils/image';
-import Icons from '../../components/atoms/icons';
 
 export const HomeScreen = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -19,7 +17,7 @@ export const HomeScreen = () => {
   }, [isLoading]);
 
   return (
-    <BottomTabPageLayout headerText="HOME Screen">
+    <BottomTabPageLayout headerText="HOME">
       {isLoading && <ActivityIndicator />}
       <View style={styles.Container}>
         <Button

@@ -7,6 +7,9 @@ export const colors = {
   background: {
     default: baseColors.neutral['005'],
     neutral: baseColors.neutral['100'],
+    dark: baseColors.black['001'],
+    primary: baseColors.neutral['101'],
+
     fill: {
       primaryActive: baseColors.brand['400'],
       primaryInverse: baseColors.neutral['000'],

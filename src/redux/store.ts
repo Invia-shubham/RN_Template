@@ -15,18 +15,21 @@ import {
 import { setupListeners } from '@reduxjs/toolkit/query';
 import userReducer from './slices/userSlice';
 import themeReducer from './slices/themeSlice';
+import networkReducer from './slices/networkSlice';
+import reduxStorage from './storage';
 
 // Combine reducers
 const reducers = combineReducers({
   [baseApi.reducerPath]: baseApi.reducer,
   user: userReducer, //add reducer
-  theme: themeReducer
+  theme: themeReducer,
+  network: networkReducer,
 });
 
 // Define persist config using AsyncStorage as storage
 const persistConfig = {
   key: 'root',
-  storage: AsyncStorage,  // Replace MMKV with AsyncStorage
+  storage: reduxStorage,  // Replace MMKV with /Users/shubhamkumarsingh/Desktop/ReactProject/GrowwClone_Public/src/redux/storage.tsx
   whitelist: ['auth', 'api'], // Only persist 'auth' and 'api' slices
 };
 

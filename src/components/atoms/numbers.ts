@@ -68,4 +68,10 @@ export const numbers = {
     xlarge: baseNumbers['20'],
     full: baseNumbers['832'],
   },
+  size:{
+    '5': baseNumbers['5'],
+    '10': baseNumbers['10'],
+    '20': baseNumbers['20'],
+    '40': baseNumbers['40'],
+  }
 };

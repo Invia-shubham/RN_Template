@@ -3,6 +3,7 @@ import React, {ReactNode} from 'react';
 import {numbers} from '../../atoms/numbers';
 import {colors} from '../../atoms/colors';
 import BottomTabPageHeader from './bottomTabPageHeader';
+import NoInternet from '../../molecules/NoInternet';
 
 interface IBottomTabPageLayout {
   children?: ReactNode;
@@ -19,6 +20,7 @@ const BottomTabPageLayout = ({children, headerText = '', style, pending}: IBotto
         <BottomTabPageHeader pending={pending} title={headerText} />
       </View>
       <View style={styles.childrenStyle}>{children}</View>
+      <NoInternet />
     </SafeAreaView>
   );
 };
@@ -28,8 +30,8 @@ export default BottomTabPageLayout;
 const styles = StyleSheet.create({
   parentViewStyle: {
     flex: 1,
-    backgroundColor: colors.background.surface.secondary,
-    marginBottom: 90,
+    backgroundColor: colors.background.surface.primary,
+    // marginBottom: 90,
   },
   headerStyle: {paddingHorizontal: numbers.padding[16], paddingTop: numbers.padding[16]},
   childrenStyle: {flex: 1},

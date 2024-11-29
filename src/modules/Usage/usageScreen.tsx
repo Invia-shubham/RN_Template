@@ -1,14 +1,15 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import React from 'react'
 import { colors } from '../../components/atoms/colors';
 import { typography } from '../../components/atoms/typography';
 import BottomTabPageLayout from '../../components/organisms/bottomTabPageLayout/bottomTabPageLayout';
+import RNText from '../../components/molecules/RNText';
 
 export const UsageScreen = () => {
   return (
     <BottomTabPageLayout headerText='USAGE'>
     <View style={styles.Container}>
-      <Text style={styles.activeText}>UsageScreen</Text>
+      <RNText style={styles.activeText}>UsageScreen</RNText>
     </View>
     </BottomTabPageLayout>
   )

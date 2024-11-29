@@ -20,7 +20,7 @@ const BottomTabPageLayout = ({
   style,
   pending,
 }: IBottomTabPageLayout) => {
-  const {isDarkTheme, currentTheme, toggleTheme} = useContext(AppThemeContext);
+  const {isDarkTheme} = useContext(AppThemeContext);
   return (
     <SafeAreaView
       style={{

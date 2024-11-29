@@ -1,7 +1,8 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import {colors} from '../../atoms/colors';
 import {typography} from '../../atoms/typography';
+import {AppThemeContext} from '../../../appcontext/AppThemeContext';
 
 interface IBottomTabPageHeader {
   title: string;
@@ -9,10 +10,20 @@ interface IBottomTabPageHeader {
 }
 
 const BottomTabPageHeader = ({title, pending}: IBottomTabPageHeader) => {
+  const {isDarkTheme, currentTheme, toggleTheme} = useContext(AppThemeContext);
+
   return (
     <View style={bottomTabPageHeaderStyles.parentViewStyle}>
       <View style={bottomTabPageHeaderStyles.flexOneStyle}>
-        <Text style={bottomTabPageHeaderStyles.headerTextStyle}>{title}</Text>
+        <Text
+          style={{
+            ...bottomTabPageHeaderStyles.headerTextStyle,
+            color: isDarkTheme
+              ? colors.text.primaryInverted
+              : colors.gradient.lightBlue,
+          }}>
+          {title}
+        </Text>
       </View>
       <View style={bottomTabPageHeaderStyles.pendingButtonContainer}></View>
       <View style={bottomTabPageHeaderStyles.flexOneStyle} />

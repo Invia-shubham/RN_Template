@@ -27,6 +27,7 @@ export const colors = {
       warningLowemphasis: baseColors.orange['000'],
       warningHighemphasis: baseColors.orange['080'],
       informationLowemphasis: baseColors.blue['050'],
+      bottomTabDark:baseColors.black['012'],
     },
     surface: {
       primary: baseColors.neutral['000'],
@@ -34,6 +35,7 @@ export const colors = {
       secondary: baseColors.neutral['005'],
       tertiary: baseColors.transparency.gray['015'],
       primaryDark:baseColors.black['011'],
+
     },
   },
   border: {
@@ -82,6 +84,9 @@ export const colors = {
     success: baseColors.green['080'],
     warning: baseColors.orange['080'],
     information: baseColors.blue['400'],
+    bottomActiveIconDark:baseColors.black['013'],
+    bottomInActiveIconDark:baseColors.black['014'],
+
   },
   divider: {
     default: baseColors.neutral['010'],

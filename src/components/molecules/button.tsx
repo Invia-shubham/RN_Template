@@ -87,7 +87,7 @@ const Button = ({
       inverted: colors.text.secondaryActive,
     },
     secondary: {
-      active: isDarkTheme ? colors.text.primaryInverted : colors.text.primary,
+      active: isDarkTheme ? colors.text.primaryInverted : colors.text.primaryActive,
       disabled: colors.text.primaryDisabled,
       hover: colors.text.primaryActive,
       inverted: colors.text.primaryInverted,
@@ -103,7 +103,7 @@ const Button = ({
 
   const borderColor = {
     secondary: {
-      active: colors.border.secondaryActive,
+      active: isDarkTheme ? colors.text.primaryInverted :colors.border.secondaryActive,
       disabled: colors.border.primaryDisabled,
       hover: colors.background.fill.secondaryHover,
       inverted: colors.border.primaryActiveInversed,

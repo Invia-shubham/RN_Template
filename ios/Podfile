@@ -26,6 +26,7 @@ target 'code_design' do
   target 'code_designTests' do
     inherit! :complete
     # Pods for testing
+    'RCTLinkingIOS',
   end
 
   post_install do |installer|

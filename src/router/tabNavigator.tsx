@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode, useContext} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useTranslation} from 'react-i18next';
@@ -13,6 +13,7 @@ import {
   NotificationScreen,
   UsageScreen,
 } from '../modules';
+import {AppThemeContext} from '../appcontext/AppThemeContext';
 
 const Tab = createBottomTabNavigator();
 
@@ -54,6 +55,7 @@ const TabButton = ({
 };
 const Tabs = () => {
   const {t} = useTranslation();
+  const {isDarkTheme} = useContext(AppThemeContext);
 
   return (
     <>
@@ -64,7 +66,11 @@ const Tabs = () => {
           tabBarHideOnKeyboard: true,
           tabBarActiveTintColor: colors.icon.primaryActive,
           tabBarInactiveTintColor: colors.icon.primaryInverse,
-          // tabBarStyle: styles.tabBarStyle,
+          tabBarStyle: {
+            backgroundColor: isDarkTheme
+              ? colors.background.fill.bottomTabDark
+              : colors.background.fill.primaryInverse,
+          },
         }}>
         <Tab.Screen
           name={TAB_ROUTES.HOME}

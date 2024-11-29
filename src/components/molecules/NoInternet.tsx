@@ -48,10 +48,24 @@ const NoInternet = () => {
                   : colors.background.default,
               },
             ]}>
-            <Icon name="wifi-off" size={numbers.size[20]} color={colors.text} />
+            <Icon
+              name="wifi-off"
+              size={numbers.size[20]}
+              color={colors.icon.error}
+            />
             <View>
-              <Text style={styles.buttonText}>Low Internet</Text>
-              <Text style={styles.bottomText}>
+              <Text
+                style={{
+                  ...styles.buttonText,
+                  color: colors.text.primaryInverted,
+                }}>
+                Low Internet
+              </Text>
+              <Text
+                style={{
+                  ...styles.buttonText,
+                  color: colors.text.primaryInverted,
+                }}>
                 Check your network connection
               </Text>
             </View>

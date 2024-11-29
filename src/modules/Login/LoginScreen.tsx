@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import React from 'react';
 import {colors} from '../../components/atoms/colors';
 import {typography} from '../../components/atoms/typography';
@@ -6,6 +6,7 @@ import {TAB_ROUTES} from '../../router/enum';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigation} from '../../router/stackNavigation';
 import BottomTabPageLayout from '../../components/organisms/bottomTabPageLayout/bottomTabPageLayout';
+import RNText from '../../components/molecules/RNText';
 
 export const LoginScreen = () => {
   const {navigate} = useNavigation<StackNavigation>();
@@ -13,13 +14,13 @@ export const LoginScreen = () => {
   return (
     <BottomTabPageLayout headerText='LOGIN'>
     <View style={styles.Container}>
-      <Text
+      <RNText
         style={styles.activeText}
         onPress={() => {
           navigate(TAB_ROUTES.TAB);
         }}>
         LoginScreen
-      </Text>
+      </RNText>
     </View>
     </BottomTabPageLayout>
   );
@@ -32,7 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   activeText: {
-    color: colors.text.primaryActive,
     ...typography.style.TypographyParagraphMedium,
   },
 });

@@ -6,6 +6,7 @@ import {baseColors} from './baseColors';
 export const colors = {
   background: {
     default: baseColors.neutral['005'],
+    defaultDark:baseColors.black['011'],
     neutral: baseColors.neutral['100'],
     dark: baseColors.black['001'],
     primary: baseColors.neutral['101'],
@@ -32,6 +33,7 @@ export const colors = {
       primaryInverse: baseColors.transparency.brand['080'],
       secondary: baseColors.neutral['005'],
       tertiary: baseColors.transparency.gray['015'],
+      primaryDark:baseColors.black['011'],
     },
   },
   border: {

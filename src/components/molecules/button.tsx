@@ -1,9 +1,16 @@
-import React, {ReactNode, useState} from 'react';
-import {StyleSheet, TouchableOpacity, Text, StyleProp, ViewStyle} from 'react-native';
+import React, {ReactNode, useContext, useState} from 'react';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 import {colors} from '../atoms/colors';
 import {numbers} from '../atoms/numbers';
 import {View} from 'react-native';
 import {typography} from '../atoms/typography';
+import {AppThemeContext} from '../../appcontext/AppThemeContext';
 
 export enum ButtonStatus {
   Active = 'active',
@@ -49,6 +56,7 @@ const Button = ({
 }: ButtonProps) => {
   const [isPressed, setIsPressed] = useState(false);
   const buttonStatus = isPressed ? ButtonStatus.Hover : status;
+  const {isDarkTheme, currentTheme, toggleTheme} = useContext(AppThemeContext);
   const backgroundColor = {
     primary: {
       active: colors.background.fill.primaryActive,
@@ -62,24 +70,32 @@ const Button = ({
       hover: colors.background.fill.secondaryHover,
       inverted: 'transparent',
     },
-    textButton: {active: 'transparent', disabled: 'transparent', hover: 'transparent'},
+    textButton: {
+      active: 'transparent',
+      disabled: 'transparent',
+      hover: 'transparent',
+    },
   };
 
   const textColor = {
     primary: {
-      active: colors.text.primaryActiveOnFill,
+      active: isDarkTheme
+        ? colors.text.primaryInverted
+        : colors.text.primaryActiveOnFill,
       disabled: colors.text.primaryDisabled,
       hover: colors.text.primaryActiveOnFill,
       inverted: colors.text.secondaryActive,
     },
     secondary: {
-      active: colors.text.secondaryActive,
+      active: isDarkTheme ? colors.text.primaryInverted : colors.text.primary,
       disabled: colors.text.primaryDisabled,
       hover: colors.text.primaryActive,
       inverted: colors.text.primaryInverted,
     },
     textButton: {
-      active: colors.text.primaryActive,
+      active: isDarkTheme
+        ? colors.text.primaryInverted
+        : colors.text.primaryActive,
       disabled: colors.text.primaryDisabled,
       hover: colors.text.primaryHover,
     },
@@ -92,13 +108,19 @@ const Button = ({
       hover: colors.background.fill.secondaryHover,
       inverted: colors.border.primaryActiveInversed,
     },
-    textButton: {active: 'transparent', disabled: 'transparent', hover: 'transparent'},
+    textButton: {
+      active: 'transparent',
+      disabled: 'transparent',
+      hover: 'transparent',
+    },
   };
 
   const buttonStyle = {
     backgroundColor: backgroundColor[buttonType][buttonStatus],
     borderColor:
-      buttonType === ButtonType.Secondary ? borderColor[buttonType][buttonStatus] : 'transparent',
+      buttonType === ButtonType.Secondary
+        ? borderColor[buttonType][buttonStatus]
+        : 'transparent',
     borderRadius: borderRadius,
   };
 
@@ -121,9 +143,15 @@ const Button = ({
         status === ButtonStatus.Inverted ? styles.invertedbutton : null,
         style,
       ]}>
-      {leftIcon && <View style={[styles.leftIconStyle, leftIconBgStyle]}>{leftIcon}</View>}
+      {leftIcon && (
+        <View style={[styles.leftIconStyle, leftIconBgStyle]}>{leftIcon}</View>
+      )}
       <Text style={[styles.text, textStyle]}>{children}</Text>
-      {rightIcon && <View style={[styles.rightIconStyle, rightIconBgStyle]}>{rightIcon}</View>}
+      {rightIcon && (
+        <View style={[styles.rightIconStyle, rightIconBgStyle]}>
+          {rightIcon}
+        </View>
+      )}
     </TouchableOpacity>
   );
 };

@@ -6,19 +6,28 @@ import {typography} from '../atoms/typography';
 import {numbers} from '../atoms/numbers';
 import {colors} from '../atoms/colors';
 import {AppThemeContext} from '../../appcontext/AppThemeContext';
+import {setNetworkStatus} from '../../redux/slices/networkSlice';
+import {useDispatch} from 'react-redux';
 
 const NoInternet = () => {
   const {isDarkTheme, currentTheme, toggleTheme} = useContext(AppThemeContext);
   const [isConnected, setIsConnected] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener((state: any) => {
       setIsConnected(state.isConnected);
+
+      if (state.isConnected) {
+        dispatch(setNetworkStatus(state.isConnected));
+      } else {
+        console.log('Network is offline!');
+      }
     });
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

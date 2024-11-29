@@ -1,9 +1,10 @@
 import {SafeAreaView, StyleSheet, View, ViewStyle} from 'react-native';
-import React, {ReactNode} from 'react';
+import React, {ReactNode, useContext} from 'react';
 import {numbers} from '../../atoms/numbers';
 import {colors} from '../../atoms/colors';
 import BottomTabPageHeader from './bottomTabPageHeader';
 import NoInternet from '../../molecules/NoInternet';
+import {AppThemeContext} from '../../../appcontext/AppThemeContext';
 
 interface IBottomTabPageLayout {
   children?: ReactNode;
@@ -13,9 +14,22 @@ interface IBottomTabPageLayout {
   pending?: boolean;
 }
 
-const BottomTabPageLayout = ({children, headerText = '', style, pending}: IBottomTabPageLayout) => {
+const BottomTabPageLayout = ({
+  children,
+  headerText = '',
+  style,
+  pending,
+}: IBottomTabPageLayout) => {
+  const {isDarkTheme, currentTheme, toggleTheme} = useContext(AppThemeContext);
   return (
-    <SafeAreaView style={{...styles.parentViewStyle, ...style}}>
+    <SafeAreaView
+      style={{
+        ...styles.parentViewStyle,
+        backgroundColor: isDarkTheme
+          ? colors.background.surface.primaryDark
+          : colors.background.surface.primary,
+        ...style,
+      }}>
       <View style={styles.headerStyle}>
         <BottomTabPageHeader pending={pending} title={headerText} />
       </View>
@@ -33,6 +47,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background.surface.primary,
     // marginBottom: 90,
   },
-  headerStyle: {paddingHorizontal: numbers.padding[16], paddingTop: numbers.padding[16]},
+  headerStyle: {
+    paddingHorizontal: numbers.padding[16],
+    paddingTop: numbers.padding[16],
+  },
   childrenStyle: {flex: 1},
 });

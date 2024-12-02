@@ -3,12 +3,13 @@ import {Image} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 
 interface IconProps {
   size?: number;
   color?: string;
   style?: object;
-  library?: 'MaterialCommunityIcons' | 'FontAwesome' | 'Ionicons';
+  library?: 'MaterialCommunityIcons' | 'FontAwesome' | 'Ionicons' | 'Fontisto';
   iconName: string;
   isImage?: boolean;
 }
@@ -48,6 +49,9 @@ const Icons: React.FC<IconProps> = ({
       break;
     case 'Ionicons':
       IconLibrary = Ionicons;
+      break;
+    case 'Fontisto':
+      IconLibrary = Fontisto;
       break;
     default:
       IconLibrary = MaterialCommunityIcons;

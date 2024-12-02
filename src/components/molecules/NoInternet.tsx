@@ -8,6 +8,7 @@ import {colors} from '../atoms/colors';
 import {AppThemeContext} from '../../appcontext/AppThemeContext';
 import {setNetworkStatus} from '../../redux/slices/networkSlice';
 import {useDispatch} from 'react-redux';
+import RNText from './RNText';
 
 const NoInternet = () => {
   const {isDarkTheme, currentTheme, toggleTheme} = useContext(AppThemeContext);
@@ -54,20 +55,20 @@ const NoInternet = () => {
               color={colors.icon.error}
             />
             <View>
-              <Text
+              <RNText
                 style={{
                   ...styles.buttonText,
-                  color: colors.text.primaryInverted,
-                }}>
+                }}
+                lightColor={colors.text.nearBlack}>
                 Low Internet
-              </Text>
-              <Text
+              </RNText>
+              <RNText
                 style={{
                   ...styles.buttonText,
-                  color: colors.text.primaryInverted,
-                }}>
+                }}
+                lightColor={colors.text.nearBlack}>
                 Check your network connection
-              </Text>
+              </RNText>
             </View>
           </View>
         </SafeAreaView>

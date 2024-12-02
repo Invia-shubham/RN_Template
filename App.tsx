@@ -5,7 +5,7 @@
  * @format
  */
 
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -20,10 +20,10 @@ function App(): React.JSX.Element {
 
 
   const linking = {
-    prefixes: ['com.code_design://open'],  // Your deep link prefix
+    prefixes: ['com.code_design://open'],
     config: {
       screens: {
-        YourTargetScreen: LOGIN_SCREEN_ROUTES.LOGIN_SCREEN,  // Define your target screen
+        YourTargetScreen: LOGIN_SCREEN_ROUTES.LOGIN_SCREEN,  
       },
     },
   };

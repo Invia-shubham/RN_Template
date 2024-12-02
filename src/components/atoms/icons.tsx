@@ -2,14 +2,15 @@ import React from 'react';
 import {Image} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface IconProps {
   size?: number;
-  color?: string; 
-  style?: object; 
-  library?: 'MaterialCommunityIcons' | 'FontAwesome'; 
-  iconName: string; 
-  isImage?: boolean; 
+  color?: string;
+  style?: object;
+  library?: 'MaterialCommunityIcons' | 'FontAwesome' | 'Ionicons';
+  iconName: string;
+  isImage?: boolean;
 }
 
 const Icons: React.FC<IconProps> = ({
@@ -22,11 +23,13 @@ const Icons: React.FC<IconProps> = ({
 }) => {
   if (isImage) {
     try {
-      return isImage && (
-        <Image
-          source={iconName}
-          style={[{width: size, height: size}, style]}
-        />
+      return (
+        isImage && (
+          <Image
+            source={iconName}
+            style={[{width: size, height: size}, style]}
+          />
+        )
       );
     } catch (error) {
       console.error(`Image ${iconName} not found!`);
@@ -42,6 +45,9 @@ const Icons: React.FC<IconProps> = ({
       break;
     case 'FontAwesome':
       IconLibrary = FontAwesome;
+      break;
+    case 'Ionicons':
+      IconLibrary = Ionicons;
       break;
     default:
       IconLibrary = MaterialCommunityIcons;

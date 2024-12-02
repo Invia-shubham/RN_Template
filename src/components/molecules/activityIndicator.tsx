@@ -8,6 +8,7 @@ import {
   Image,
   ViewStyle,
   ImageSourcePropType,
+  ActivityIndicator as Loader,
 } from 'react-native';
 import {colors} from '../atoms/colors';
 
@@ -19,6 +20,7 @@ interface Props {
   innerContainerColor?: string;
   innerImage?: ImageSourcePropType;
   style?: ViewStyle;
+  indicatorType?: 'default' | 'custom';
 }
 
 const ActivityIndicator: React.FC<Props> = ({
@@ -27,6 +29,7 @@ const ActivityIndicator: React.FC<Props> = ({
   innerContainerColor,
   innerImage,
   style,
+  indicatorType,
 }) => {
   const illustration = require('../../assets/img/spinner.png');
   const rotateAnim = useRef(new Animated.Value(0)).current;
@@ -54,19 +57,36 @@ const ActivityIndicator: React.FC<Props> = ({
 
   return (
     <Modal animationType={'none'} transparent={true} visible={true}>
-      <View style={[styles.container, style]}>
-        {!spinnerImage && <View style={styles.blurView} />}
-        <View style={styles.spinnerContainer}>
-          <Animated.View style={{transform: [{rotate: rotation}]}}>
-            <Image style={styles.spinner} source={spinnerImage || illustration} />
-          </Animated.View>
-          {innerImage && (
-            <View style={[styles.innerContainer, {backgroundColor: innerContainerColor}]}>
-              <Image style={styles.centerImage} source={innerImage || illustration} />
-            </View>
-          )}
+      {indicatorType == 'custom' ? (
+        <View style={[styles.container, style]}>
+          {!spinnerImage && <View style={styles.blurView} />}
+          <View style={styles.spinnerContainer}>
+            <Animated.View style={{transform: [{rotate: rotation}]}}>
+              <Image
+                style={styles.spinner}
+                source={spinnerImage || illustration}
+              />
+            </Animated.View>
+            {innerImage && (
+              <View
+                style={[
+                  styles.innerContainer,
+                  {backgroundColor: innerContainerColor},
+                ]}>
+                <Image
+                  style={styles.centerImage}
+                  source={innerImage || illustration}
+                />
+              </View>
+            )}
+          </View>
         </View>
-      </View>
+      ) : (
+        <View style={styles.container}>
+        <Loader size={'large'} />
+        </View>
+
+      )}
     </Modal>
   );
 };

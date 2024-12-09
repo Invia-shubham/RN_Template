@@ -1,5 +1,5 @@
 import {StyleSheet, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {colors} from '../../components/atoms/colors';
 import {typography} from '../../components/atoms/typography';
 import BottomTabPageLayout from '../../components/organisms/bottomTabPageLayout/bottomTabPageLayout';
@@ -9,14 +9,18 @@ import SearchInput from '../../components/molecules/searchInput/searchInput';
 import CustomSwitch from '../../components/molecules/switchButton';
 import RadioButtonListItem from '../../components/molecules/radioButtonListItem/radioButtonListItem';
 import OverlayModal from '../../components/organisms/OverlayModal';
+import {AppThemeContext} from '../../appcontext/AppThemeContext';
+import {useTranslation} from 'react-i18next';
 
 export const HomeScreen = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [searchInput, setSearchInput] = useState<string>('');
-  const [toggle, setToggle] = useState<boolean>(false);
   const [selectGender, setSelectGender] = useState<'Male' | 'Female'>('Male');
   const [isAuthenticationErrorVisible, setIsAuthenticationErrorVisible] =
     useState<boolean>(false);
+  const {isDarkTheme, toggleTheme} = useContext(AppThemeContext);
+  const [toggle, setToggle] = useState<boolean>(isDarkTheme ? true : false);
+  const {t} = useTranslation();
 
   useEffect(() => {
     if (isLoading) {
@@ -38,14 +42,13 @@ export const HomeScreen = () => {
       },
     },
   ];
-
   return (
     <BottomTabPageLayout headerText="HOME">
       {isLoading && <ActivityIndicator indicatorType="default" />}
       <View style={styles.Container}>
         <View style={styles.searchContainer}>
           <SearchInput
-            placeholder="Search here..."
+            placeholder={t('home.search_here')}
             onChangeText={val => setSearchInput(val)}
             value={searchInput}
             isLoading={isLoading}
@@ -58,6 +61,7 @@ export const HomeScreen = () => {
           isOn={toggle}
           onToggle={val => {
             setToggle(val);
+            toggleTheme();
           }}
         />
         <View style={styles.radioButtonContainer}>

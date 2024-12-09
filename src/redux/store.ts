@@ -29,8 +29,8 @@ const reducers = combineReducers({
 // Define persist config using AsyncStorage as storage
 const persistConfig = {
   key: 'root',
-  storage: reduxStorage,  // Replace MMKV with /Users/shubhamkumarsingh/Desktop/ReactProject/GrowwClone_Public/src/redux/storage.tsx
-  whitelist: ['auth', 'api'], // Only persist 'auth' and 'api' slices
+  storage: reduxStorage,  
+  whitelist: ['auth', 'api','theme'],
 };
 
 // Create persisted reducer

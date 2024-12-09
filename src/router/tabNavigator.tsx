@@ -24,38 +24,82 @@ type Tab = {
   label: string;
 };
 
-const TabButton = ({
-  focused,
-  activeIcon,
-  inactiveIcon,
-  label,
-  localizedLabel,
-  targetTitle,
-  isOverlay,
-}: Tab & {
-  targetTitle: string;
-  localizedLabel: string;
-  isOverlay?: boolean;
-}) => {
-  const isActive = targetTitle === localizedLabel;
-  const textStyles = isActive
-    ? styles.activeText
-    : !isActive && focused && !isOverlay
-    ? styles.activeText
-    : styles.inactiveText;
+// const TabButton = ({
+//   focused,
+//   activeIcon,
+//   inactiveIcon,
+//   label,
+//   localizedLabel,
+//   targetTitle,
+//   isOverlay,
+// }: Tab & {
+//   targetTitle: string;
+//   localizedLabel: string;
+//   isOverlay?: boolean;
+// }) => {
+//   const isActive = targetTitle === localizedLabel;
+//   const textStyles = isActive
+//     ? styles.activeText
+//     : !isActive && focused && !isOverlay
+//     ? styles.activeText
+//     : styles.inactiveText;
 
-  return (
-    <View style={styles.tabButton}>
-      {isActive || (!isActive && focused && !isOverlay)
-        ? activeIcon
-        : inactiveIcon}
-      <Text style={textStyles}>{label}</Text>
-    </View>
-  );
-};
+//   return (
+//     <View style={styles.tabButton}>
+//       {isActive || (!isActive && focused && !isOverlay)
+//         ? activeIcon
+//         : inactiveIcon}
+//       <Text style={textStyles}>{label}</Text>
+//     </View>
+//   );
+// };
+
+const screenData = [
+  {
+    name: TAB_ROUTES.HOME,
+    component: HomeScreen,
+    icon: image.home_Bottom_Icon,
+    label: 'Home', // You can also use `t('home')` for translations
+  },
+  {
+    name: TAB_ROUTES.BILLING,
+    component: BillingScreen,
+    icon: image.bill_Bottom_Icon,
+    label: 'Billing',
+  },
+  {
+    name: TAB_ROUTES.USAGE,
+    component: UsageScreen,
+    icon: image.usage_Bottom_Icon,
+    label: 'Usage',
+  },
+  {
+    name: TAB_ROUTES.NOTIFICATION,
+    component: NotificationScreen,
+    icon: image.notification_Bottom_Icon,
+    label: 'Notifications',
+  },
+  {
+    name: TAB_ROUTES.MORE,
+    component: MoreScreen,
+    icon: image.more_Bottom_Icon,
+    label: 'More',
+  },
+];
+
 const Tabs = () => {
   const {t} = useTranslation();
   const {isDarkTheme} = useContext(AppThemeContext);
+
+  const renderTabIcon = (iconName: string, focused: boolean, color: string) => (
+    <Icons
+      iconName={iconName}
+      size={24}
+      color={focused ? colors.icon.primaryActive : colors.icon.primaryInverse}
+      isImage={true}
+      style={{tintColor: color}}
+    />
+  );
 
   return (
     <>
@@ -72,92 +116,18 @@ const Tabs = () => {
               : colors.background.fill.primaryInverse,
           },
         }}>
-        <Tab.Screen
-          name={TAB_ROUTES.HOME}
-          component={HomeScreen}
-          options={{
-            tabBarIcon: ({focused, color}) => {
-              const iconName = focused ? 'home' : 'home';
-              return (
-                <Icons
-                  iconName={image.home_Bottom_Icon}
-                  size={24}
-                  color={focused ? 'blue' : 'gray'}
-                  isImage={true}
-                  style={{tintColor: color}}
-                />
-              );
-            },
-          }}
-        />
-        <Tab.Screen
-          name={TAB_ROUTES.BILLING}
-          component={BillingScreen}
-          options={{
-            tabBarIcon: ({focused, color}) => {
-              return (
-                <Icons
-                  iconName={image.bill_Bottom_Icon}
-                  size={24}
-                  color={focused ? 'blue' : 'gray'}
-                  isImage={true}
-                  style={{tintColor: color}}
-                />
-              );
-            },
-          }}
-        />
-        <Tab.Screen
-          name={TAB_ROUTES.USAGE}
-          component={UsageScreen}
-          options={{
-            tabBarIcon: ({focused, color}) => {
-              return (
-                <Icons
-                  iconName={image.usage_Bottom_Icon}
-                  size={24}
-                  color={focused ? 'blue' : 'gray'}
-                  isImage={true}
-                  style={{tintColor: color}}
-                />
-              );
-            },
-          }}
-        />
-        <Tab.Screen
-          name={TAB_ROUTES.NOTIFICATION}
-          component={NotificationScreen}
-          options={{
-            tabBarIcon: ({focused, color}) => {
-              return (
-                <Icons
-                  iconName={image.notification_Bottom_Icon}
-                  size={24}
-                  color={focused ? 'blue' : 'gray'}
-                  isImage={true}
-                  style={{tintColor: color}}
-                />
-              );
-            },
-          }}
-        />
-        <Tab.Screen
-          name={TAB_ROUTES.MORE}
-          component={MoreScreen}
-          options={{
-            tabBarIcon: ({focused, color}) => {
-              return (
-                <Icons
-                  iconName={image.more_Bottom_Icon}
-                  size={24}
-                  color={focused ? 'blue' : 'gray'}
-                  isImage={true}
-                  style={{tintColor: color}}
-                />
-              );
-            },
-          }}
-        />
+        {screenData.map(({name, component, icon, label}) => (
+          <Tab.Screen
+            key={name}
+            name={name}
+            component={component}
+            options={{
+              tabBarLabel: t(label),
+              tabBarIcon: ({focused, color}) =>
+                renderTabIcon(icon, focused, color),
+            }}
+          />
+        ))}
       </Tab.Navigator>
     </>
   );

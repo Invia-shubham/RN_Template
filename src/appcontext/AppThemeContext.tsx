@@ -1,7 +1,7 @@
 import React, {createContext, ReactNode, useEffect, useState} from 'react';
 import {useAppSelector, useAppDispatch} from '../redux/hooks';
 import {Appearance} from 'react-native';
-import {setTheme} from '../redux/slices/themeSlice'; // Assuming you have a Redux slice for theme management
+import {setTheme} from '../redux/slices/themeSlice';
 
 interface ContextState {
   isDarkTheme: boolean;
@@ -30,30 +30,45 @@ export const AppThemeContextProvider: React.FC<
   const [currentTheme, setCurrentTheme] = useState('light');
 
   useEffect(() => {
-    // Check system theme preference
-    const systemTheme = Appearance.getColorScheme();
-    if (systemTheme === 'dark') {
-      setIsDarkTheme(true);
-      setCurrentTheme('dark');
-      dispatch(setTheme('dark'));
-    } else {
-      setIsDarkTheme(false);
-      setCurrentTheme('light');
-      dispatch(setTheme('light'));
-    }
+    // Function to handle theme changes based on system theme
+    const handleSystemThemeChange = () => {
+      const systemTheme = Appearance.getColorScheme();
+      if (systemTheme === 'dark') {
+        setIsDarkTheme(true);
+        setCurrentTheme('dark');
+        // Dispatch system theme to Redux, but we will override with selectedTheme
+        dispatch(setTheme('dark'));
+      } else {
+        setIsDarkTheme(false);
+        setCurrentTheme('light');
+        // Dispatch system theme to Redux
+        dispatch(setTheme('light'));
+      }
+    };
 
-    // If the user has selected a theme in settings (from Redux), override the system preference
+    // If Redux has a selected theme, use it
     if (selectedTheme) {
       setIsDarkTheme(selectedTheme === 'dark');
       setCurrentTheme(selectedTheme);
+    } else {
+      // Otherwise, use system theme
+      handleSystemThemeChange();
     }
-  }, [selectedTheme]);
+
+    // Listen for system theme changes
+    const subscription = Appearance.addChangeListener(handleSystemThemeChange);
+
+    // Clean up the listener when the component unmounts
+    return () => {
+      subscription.remove();
+    };
+  }, [dispatch, selectedTheme]);
 
   const toggleTheme = () => {
     const newTheme = isDarkTheme ? 'light' : 'dark';
     setIsDarkTheme(!isDarkTheme);
     setCurrentTheme(newTheme);
-    dispatch(setTheme(newTheme)); // Dispatch action to save the theme in Redux (optional)
+    dispatch(setTheme(newTheme)); // Dispatch action to save the theme in Redux
   };
 
   const contextValue: ContextState = {

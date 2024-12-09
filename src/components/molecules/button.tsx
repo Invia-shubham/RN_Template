@@ -56,7 +56,7 @@ const Button = ({
 }: ButtonProps) => {
   const [isPressed, setIsPressed] = useState(false);
   const buttonStatus = isPressed ? ButtonStatus.Hover : status;
-  const {isDarkTheme, currentTheme, toggleTheme} = useContext(AppThemeContext);
+  const {isDarkTheme} = useContext(AppThemeContext);
   const backgroundColor = {
     primary: {
       active: colors.background.fill.primaryActive,
